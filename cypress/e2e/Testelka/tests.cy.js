@@ -1,3 +1,4 @@
+/// <reference types="Cypress" />
 describe('Main page', () => {
  
  
@@ -45,25 +46,23 @@ describe('Main page', () => {
     })
 
     it("Validate basket value", () => {
-
-    })
-   
-   /*
-    it("There should be 4 sections on the page", () => {
-     
       cy.visit('')
-      cy.get('ul.columns-4').should('have.length', 4);
+      cy.get('[data-product_id="4114"]').first().click()
+      cy.get('a[title="Zobacz koszyk"]').should('be.visible')
+      cy.get('a[href="https://fakestore.testelka.pl/koszyk/"]').first().click()
+      cy.get('.order-total')
     })
-     
-      it("Every section should have 4 items", () => {
-     
-        cy.visit('')
-        cy.get('ul.columns-4>li').should('have.length', 16);
-   
+
+    it("Validate if gran koscielcow in Nowosci setion and in Popularne have equal price", () => {
+      cy.visit('')
+      let price1;
+      let price2;
+      cy.get('.storefront-popular-products li.product.post-4114 .price bdi').should(($el1) => {
+        price1 = $el1.text();
+      });
+      cy.get('.storefront-recent-products li.product.post-4114 .price bdi').should(($el2) => {
+        price2 = $el2.text();
+        expect(price1).equal(price2)
+      })
     })
-   */
-   
-   
-   
-   
   });
